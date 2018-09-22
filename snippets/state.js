@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-class HelloWorld extends Component {
-  state = {
+class HelloWorldState extends Component {}
+state = {
     count: 0
   };
 
@@ -14,11 +14,6 @@ class HelloWorld extends Component {
 
   //button onclick function
   handeIncrement = () => {
-    console.log("Increment clicked", this);
-  };
-
-  //button onclick function
-  handeIncrementParam = product => {
     //function with arrow notation inherits 'this' keyword
     //sets state on event
     this.setState({ count: this.state.count + 1 });
@@ -27,8 +22,7 @@ class HelloWorld extends Component {
   render() {
     return (
       <div>
-        {/**shorthand to pass parameter to function*/}
-        <span onClick={() => this.handeIncrementParam({ id: 1 })}>
+        <span onClick={() => this.handeIncrement({ id: 1 })}>
           {this.state.count}
         </span>
         {/*onclick by passing referenc to function*/}
@@ -36,6 +30,5 @@ class HelloWorld extends Component {
       </div>
     );
   }
-}
-
-export default HelloWorld;
+export default HelloWorldState;
+//export as default class
