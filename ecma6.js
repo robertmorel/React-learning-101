@@ -28,7 +28,7 @@ walk(); //will return undefined
 //bind this
 //set the value of this to the person object using bind
 const walk = person.walk.bind(person);
-walk(); //will the person object
+walk(); //will return the person object
 
 //Arrow functions
 const square = function(number) {
@@ -74,7 +74,7 @@ const activeJobs = jobs.filter(job => job.isActive);
 //arrow functions with this
 const person = {
   talk() {
-    var self = this;
+    var self = this; //now reundant
     setTimeout(() => {
       console.log("this", this);
     }, 1000);
