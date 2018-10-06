@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-class HelloWorldState extends Component {}
-state = {
+class HelloWorldState extends Component {
+  state = {
     count: 0
   };
 
@@ -30,5 +30,6 @@ state = {
       </div>
     );
   }
+}
 export default HelloWorldState;
 //export as default class
