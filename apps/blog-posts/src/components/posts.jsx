@@ -12,6 +12,12 @@ class Posts extends Component {
     return "List of posts";
   }
 
+  handleDeletePost = post => {
+    console.log(post);
+    const posts = this.state.posts.filter(m => m._id !== post._id);
+    this.setState({ posts });
+  };
+
   render() {
     return (
       <div>
@@ -34,7 +40,12 @@ class Posts extends Component {
                 <td>{post.category.name}</td>
                 <td>{post.content}</td>
                 <td>
-                  <button className="btn btn-danger">Delete</button>
+                  <button
+                    onClick={() => this.handleDeletePost(post)}
+                    className="btn btn-danger"
+                  >
+                    Delete Post
+                  </button>
                 </td>
               </tr>
             ))}
