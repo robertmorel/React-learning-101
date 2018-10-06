@@ -5,7 +5,8 @@ const blogPosts = [
     content: "Put in pan and boil for 5 minutes.",
     author: "Sarah Brown",
     category: { _id: "1a", name: "Food" },
-    publishDate: "2018-01-03T19:04:28.809Z"
+    publishDate: "2018-01-03T19:04:28.809Z",
+    favourited: true
   },
   {
     _id: "2",

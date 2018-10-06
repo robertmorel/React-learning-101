@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getPosts } from "../services/blogPostList";
+import Favourite from "./common/favourite";
 
 class Post extends Component {
   state = {
@@ -17,9 +18,17 @@ class Post extends Component {
     this.setState({ posts });
   };
 
+  handleFavourited = post => {
+    const posts = [...this.state.posts];
+    const index = posts.indexOf(post);
+    posts[index] = { ...posts[index] };
+    posts[index].favourited = !posts[index].favourited;
+    this.setState({ posts });
+  };
+
   render() {
     return (
-      <div>
+      <div className="container-fluid m-2">
         <h2>{this.listOfPosts()}</h2>
         <table className="table">
           <thead>
@@ -28,6 +37,7 @@ class Post extends Component {
               <th>Author</th>
               <th>Category</th>
               <th>Content</th>
+              <th />
               <th />
             </tr>
           </thead>
@@ -38,6 +48,12 @@ class Post extends Component {
                 <td>{post.author}</td>
                 <td>{post.category.name}</td>
                 <td>{post.content}</td>
+                <td>
+                  <Favourite
+                    onClick={() => this.handleFavourited(post)}
+                    favourited={post.favourited}
+                  />
+                </td>
                 <td>
                   <button
                     onClick={() => this.handleDeletePost(post)}
