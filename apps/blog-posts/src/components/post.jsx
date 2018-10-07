@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { getPosts } from "../services/blogPostList";
 import Favourite from "./common/favourite";
+import Pagination from "./common/pagination";
+import { paginate } from "../utils/paginate";
 
 class Post extends Component {
   state = {
-    posts: getPosts()
+    posts: getPosts(),
+    currentPage: 1,
+    pageSize: 2
   };
 
   listOfPosts() {
@@ -26,7 +30,16 @@ class Post extends Component {
     this.setState({ posts });
   };
 
+  handlePageChange = page => {
+    this.setState({ currentPage: page });
+  };
+
   render() {
+    const { length: count } = this.state.posts;
+    const { pageSize, currentPage, posts: allPosts } = this.state;
+
+    const posts = paginate(allPosts, currentPage, pageSize);
+
     return (
       <div className="container-fluid m-2">
         <h2>{this.listOfPosts()}</h2>
@@ -42,7 +55,7 @@ class Post extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.posts.map(post => (
+            {posts.map(post => (
               <tr key={post._id}>
                 <td>{post.title}</td>
                 <td>{post.author}</td>
@@ -66,6 +79,12 @@ class Post extends Component {
             ))}
           </tbody>
         </table>
+        <Pagination
+          itemsCount={count}
+          pageSize={pageSize}
+          currentPage={currentPage}
+          onPageChange={this.handlePageChange}
+        />
       </div>
     );
   }
